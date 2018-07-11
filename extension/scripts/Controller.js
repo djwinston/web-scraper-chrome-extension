@@ -43,6 +43,7 @@ SitemapController.prototype = {
 			'SitemapBrowseData',
 			'SitemapScrapeConfig',
 			'SitemapExportDataCSV',
+			'SitemapExportDataJSON',
 			'SitemapEditMetadata',
 			'SelectorList',
 			'SelectorListItem',
@@ -94,6 +95,9 @@ SitemapController.prototype = {
 				},
 				'#sitemap-export-data-csv-nav-button': {
 					click: this.showSitemapExportDataCsvPanel
+				},
+				'#sitemap-export-data-json-nav-button': {
+					click: this.showSitemapExportDataJSONPanel
 				},
 				'#submit-create-sitemap': {
 					click: this.createSitemap
@@ -1042,7 +1046,7 @@ SitemapController.prototype = {
 			$("#viewport").html(dataPanel);
 
 			// display data
-			// Doing this the long way so there aren't xss vulnerubilites 
+			// Doing this the long way so there aren't xss vulnerubilites
 			// while working with data or with the selector titles
 			var $tbody = $("#sitemap-data tbody");
 			data.forEach(function (row) {
@@ -1076,6 +1080,26 @@ SitemapController.prototype = {
 			var blob = sitemap.getDataExportCsvBlob(data);
 			$(".download-button a").attr("href", window.URL.createObjectURL(blob));
 			$(".download-button a").attr("download", sitemap._id + ".csv");
+			$(".download-button").show();
+		}.bind(this));
+
+		return true;
+	},
+
+	showSitemapExportDataJSONPanel: function () {
+		this.setActiveNavigationButton('sitemap-export-data-json');
+
+		var sitemap = this.state.currentSitemap;
+		var exportPanel = ich.SitemapExportDataJSON(sitemap);
+		$("#viewport").html(exportPanel);
+
+		// generate data
+		$(".download-button").hide();
+		this.store.getSitemapData(sitemap, function (data) {
+			var blob = sitemap.getDataExportJSONBlob(data);
+			//$("#viewport").html(JSON.stringify(data));
+			$(".download-button a").attr("href", window.URL.createObjectURL(blob));
+			$(".download-button a").attr("download", sitemap._id + ".json");
 			$(".download-button").show();
 		}.bind(this));
 
@@ -1407,7 +1431,7 @@ SitemapController.prototype = {
 			// remove from validator
 			var validator = this.getFormValidator();
 			validator.removeField($block.find("input"));
-			
+
 			$block.remove();
 		}
 	}

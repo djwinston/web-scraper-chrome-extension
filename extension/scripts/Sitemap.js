@@ -203,6 +203,10 @@ Sitemap.prototype = {
 
 		return new Blob(csvData, {type: 'text/csv'});
 	},
+	getDataExportJSONBlob: function (data) {
+		var jsonData = JSON.stringify(data, undefined, 4);
+		return new Blob([jsonData], {type: 'application/json'});
+	},
 	getSelectorById: function (selectorId) {
 		return this.selectors.getSelectorById(selectorId);
 	},
@@ -216,4 +220,3 @@ Sitemap.prototype = {
 		return sitemap;
 	}
 };
-
