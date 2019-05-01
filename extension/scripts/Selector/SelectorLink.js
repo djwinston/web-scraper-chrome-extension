@@ -41,8 +41,8 @@ var SelectorLink = {
 				var data = {};
 				data[this.id] = $(element).text();
 				data._followSelectorId = this.id;
-				data[this.id + '-href'] = element.href;
-				data._follow = element.href;
+				data[this.id + '-href'] = element.href || element.getAttribute('data-href');
+				data._follow = element.href || element.getAttribute('data-href');
 				deferredData.resolve(data);
 
 				return deferredData;
@@ -65,8 +65,8 @@ var SelectorLink = {
 	},
 
 	getFeatures: function () {
-		return ['multiple', 'delay']
-	},
+		return ['multiple', 'datafilter', 'delay']
+		},
 
 	getItemCSSSelector: function() {
 		return "a";

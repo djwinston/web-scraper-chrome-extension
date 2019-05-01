@@ -139,8 +139,8 @@ var SelectorPopupLink = {
 	},
 
 	getFeatures: function () {
-		return ['multiple', 'delay']
-	},
+		return ['multiple', 'datafilter', 'delay']
+		},
 
 	getItemCSSSelector: function() {
 		return "*";

@@ -114,8 +114,8 @@ var SelectorImage = {
 	},
 
 	getFeatures: function () {
-		return ['multiple', 'delay', 'downloadImage']
-	},
+		return ['multiple', 'datafilter', 'delay', 'downloadImage']
+		},
 
 	getItemCSSSelector: function() {
 		return "img";

@@ -867,6 +867,7 @@ SitemapController.prototype = {
 		var clickPopup = $("#edit-selector [name=clickPopup]").is(":checked");
 		var regex = $("#edit-selector [name=regex]").val();
 		var delay = $("#edit-selector [name=delay]").val();
+		var datafilter = $("#edit-selector [name=datafilter]").val();
 		var extractAttribute = $("#edit-selector [name=extractAttribute]").val();
 		var parentSelectors = $("#edit-selector [name=parentSelectors]").val();
 		var columns = [];
@@ -900,6 +901,7 @@ SitemapController.prototype = {
 			clickPopup: clickPopup,
 			regex: regex,
 			extractAttribute:extractAttribute,
+			datafilter:datafilter,
 			parentSelectors: parentSelectors,
 			columns:columns,
 			delay:delay
@@ -1389,6 +1391,9 @@ SitemapController.prototype = {
 				dataColumns.forEach(function (column) {
 					var $td = $("<td></td>");
 					var cellData = row[column];
+					if(typeof func == "function"){
+						cellData = func(cellData);
+					}
 					if (typeof cellData === 'object') {
 						cellData = JSON.stringify(cellData);
 					}
