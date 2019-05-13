@@ -9,6 +9,8 @@ start url. This is the url from which the scraping will start. You can also
 specify multiple start urls if the scraping should start from multiple places.
 For example if you want to scrape multiple search results then you could create
 a separate start url for each search result.
+Also you can set a post processing function for JSON export. The input variable
+is `data`. You should return result.
 
 ### Specify multiple urls with ranges
 

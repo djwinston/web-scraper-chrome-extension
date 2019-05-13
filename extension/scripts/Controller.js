@@ -425,6 +425,7 @@ SitemapController.prototype = {
 	getSitemapFromMetadataForm: function(){
 
 		var id = $("#viewport form input[name=_id]").val();
+		var postProcFunc = $("#viewport form input[name=postProcFunc]").val();
 		var $startUrlInputs = $("#viewport form .input-start-url");
 		var startUrl;
 		if($startUrlInputs.length === 1) {
@@ -439,7 +440,8 @@ SitemapController.prototype = {
 
 		return {
 			id:id,
-			startUrl:startUrl
+			startUrl:startUrl,
+			postProcFunc:postProcFunc
 		};
 	},
 
@@ -461,6 +463,7 @@ SitemapController.prototype = {
 			else {
 				var sitemap = new Sitemap({
 					_id: sitemapData.id,
+					postProcFunc: sitemapData.postProcFunc,
 					startUrl: sitemapData.startUrl,
 					selectors: []
 				});
@@ -533,6 +536,7 @@ SitemapController.prototype = {
 
 			// change data
 			sitemap.startUrl = sitemapData.startUrl;
+			sitemap.postProcFunc = sitemapData.postProcFunc;
 
 			// just change sitemaps url
 			if (sitemapData.id === sitemap._id) {
