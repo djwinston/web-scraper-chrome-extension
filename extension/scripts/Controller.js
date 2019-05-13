@@ -781,6 +781,10 @@ SitemapController.prototype = {
 				{
 					type: 'SelectorGroup',
 					title: 'Grouped'
+				},
+				{
+					type: 'SelectorGroupMod',
+					title: 'GroupedMod'
 				}
 			]
 		});
@@ -872,6 +876,7 @@ SitemapController.prototype = {
 		var regex = $("#edit-selector [name=regex]").val();
 		var delay = $("#edit-selector [name=delay]").val();
 		var datafilter = $("#edit-selector [name=datafilter]").val();
+		var groupModOptions = $("#edit-selector [name=groupModOptions]").val();
 		var extractAttribute = $("#edit-selector [name=extractAttribute]").val();
 		var parentSelectors = $("#edit-selector [name=parentSelectors]").val();
 		var columns = [];
@@ -906,6 +911,7 @@ SitemapController.prototype = {
 			regex: regex,
 			extractAttribute:extractAttribute,
 			datafilter:datafilter,
+			groupModOptions:groupModOptions,
 			parentSelectors: parentSelectors,
 			columns:columns,
 			delay:delay
