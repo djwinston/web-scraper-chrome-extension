@@ -32,7 +32,10 @@ var SelectorGroup = {
 			data[this.id] = $(element).text();
 
 			if(this.extractAttribute) {
-				data[this.id+'-'+this.extractAttribute] = $(element).attr(this.extractAttribute);
+				const extractAttributes = this.extractAttribute.split(',');
+				extractAttributes.forEach(attr => {
+					data[this.id+'-'+attr] = $(element).attr(attr);
+				});
 			}
 
 			records.push(data);

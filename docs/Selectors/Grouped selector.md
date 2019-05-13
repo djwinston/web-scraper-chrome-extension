@@ -8,7 +8,7 @@ The extracted data will be stored as JSON.
  extracted and stored in JSON format.
  * attribute name - optionally this selector can extract an attribute of the
  selected element. If specified the extractor will also add this attribute to
- the resulting JSON.
+ the resulting JSON. It's possible to extract multi attributes (ex: 'src, data-src')
 
 ## Use cases
 
