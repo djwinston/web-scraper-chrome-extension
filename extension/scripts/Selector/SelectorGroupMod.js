@@ -75,6 +75,23 @@ var SelectorGroupMod = {
                         break;
                     }
 
+                    case 'multi-text':
+                        _elements.each((k, _el) => {
+                            const val = $(_el)
+                                .clone()
+                                .children()
+                                .remove()
+                                .end()
+                                .text()
+                                .trim();
+                            if (val) {
+                                data[this.id] = data[this.id] || [];
+                                data[this.id][k] = data[this.id][k] || {};
+                                data[this.id][k][name] = val;
+                            }
+                        });
+                        break;
+
                     case 'text':
                     case 'default': {
                         const val = _elements.text().trim();
